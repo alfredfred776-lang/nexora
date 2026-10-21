@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nexora is a personal productivity dashboard.">
+    <title>Nexora | Productivity Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="dashboard">
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL SPACE</p>
+          <h1>Nexora<span aria-hidden="true">.</span></h1>
+        </div>
+        <section class="clock" aria-label="Current local time">
+          <span class="clock-label">LOCAL TIME</span>
+          <time id="live-clock" datetime="">--:--:--</time>
+          <span id="current-date" class="current-date">Loading date...</span>
+        </section>
+      </header>
+
+      <section class="welcome" aria-labelledby="welcome-title">
+        <div>
+          <p class="eyebrow">MAKE TODAY COUNT</p>
+          <h2 id="welcome-title">A calmer way to get things done.</h2>
+          <p>Plan your priorities, protect your focus, and keep moving forward.</p>
+        </div>
+        <div class="welcome-orb" aria-hidden="true"></div>
+      </section>
+
+      <div class="dashboard-grid">
+        <section class="card tasks-card" aria-labelledby="tasks-heading">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">TODAY'S PLAN</p>
+              <h2 id="tasks-heading">Tasks</h2>
+            </div>
+            <span id="task-count" class="count-badge" aria-live="polite">0 tasks</span>
+          </div>
+
+          <form id="task-form" class="task-form" novalidate>
+            <label class="sr-only" for="task-input">Add a new task</label>
+            <input id="task-input" name="task" type="text" maxlength="120" placeholder="What needs your attention?" autocomplete="off" required>
+            <button type="submit" class="icon-button" aria-label="Add task">
+              <span aria-hidden="true">+</span>
+            </button>
+          </form>
+          <p id="task-error" class="form-message" role="alert" hidden></p>
+
+          <ul id="task-list" class="task-list" aria-label="Your tasks"></ul>
+          <p id="empty-tasks" class="empty-state">Your list is clear. Add one small next step.</p>
+        </section>
+
+        <section class="card focus-card" aria-labelledby="focus-heading">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">DEEP WORK</p>
+              <h2 id="focus-heading">Focus sessions</h2>
+            </div>
+            <span class="focus-icon" aria-hidden="true">✦</span>
+          </div>
+          <p class="focus-number"><span id="session-count" aria-live="polite">0</span><span>completed</span></p>
+          <p class="focus-copy">One focused session at a time adds up to meaningful progress.</p>
+          <div class="focus-actions">
+            <button id="complete-session" class="primary-button" type="button">Complete a session</button>
+            <button id="reset-sessions" class="text-button" type="button">Reset count</button>
+          </div>
+        </section>
+
+        <section class="card quote-card" aria-labelledby="quote-heading">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">A LITTLE MOMENTUM</p>
+              <h2 id="quote-heading">Daily inspiration</h2>
+            </div>
+            <span class="quote-mark" aria-hidden="true">“</span>
+          </div>
+          <figure>
+            <blockquote id="quote-text">Loading a thought for your day...</blockquote>
+            <figcaption id="quote-author"></figcaption>
+          </figure>
+          <button id="new-quote" class="secondary-button" type="button">New quote <span aria-hidden="true">↗</span></button>
+          <p id="quote-error" class="form-message" role="alert" hidden></p>
+        </section>
+      </div>
+    </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
